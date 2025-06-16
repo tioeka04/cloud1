@@ -8,6 +8,6 @@ Education purpose only (for cloud computing practical class) :
 - Waiting for next feature?
 
 How to install :
-git clone https://github.com/rahmatoktavian/cloudcomp.git
-npm install
-npm run dev
+- git clone https://github.com/rahmatoktavian/cloudcomp.git
+- npm install
+- npm run dev
