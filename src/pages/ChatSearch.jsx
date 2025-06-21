@@ -13,7 +13,7 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 
 
-export default function Chat() {
+export default function ChatSearch() {
   const [messages, setMessages] = useState([])
   const [isTyping, setIsTyping] = useState(false);
 
@@ -29,7 +29,6 @@ export default function Chat() {
   }
 
   async function handleSend(text) {
-
     //display question
     const questionMessage = {
       message: text,
@@ -47,6 +46,7 @@ export default function Chat() {
 
     //display answer
     setIsTyping(true)
+
     fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: 'POST',
       headers: {
@@ -57,7 +57,7 @@ export default function Chat() {
         model: "llama-3.3-70b-versatile",
         messages: [{
             role: "user",
-            content: text
+            content: "Please find product name only from this question: "+text
           }]
       })
     })
@@ -65,11 +65,29 @@ export default function Chat() {
       return response.json();
     })
     .then(async(data) => {
+      //get reply from LLM
+      let productName = data.choices[0].message.content
+      console.log('productName', productName)
+      //search product in supabase
+      const { data:dataProduct, error } = await supabase
+                                  .from("cloud_product")
+                                  .select("name, price")
+                                  .ilike("name", `%${productName}%`)
+                                  .order("price")
+      console.log('error', error)
+      let responseText = ''
+      if (dataProduct.length > 0) {
+        dataProduct.map(item => {
+          responseText += item.name+": Rp "+item.price.toLocaleString('id-ID')+"\n";
+        })
+      } else {
+        responseText = "Sorry, product not found";
+      }
 
       //display answer from LLM
       const replyMessage = {
         //based on response data structure
-        message: data.choices[0].message.content,
+        message: responseText,
         direction: "incoming",
       }
       setMessages(prev => [...prev, replyMessage]);
@@ -78,12 +96,11 @@ export default function Chat() {
       await supabase
           .from('cloud_chat')
           .insert({
-            message: data.choices[0].message.content,
+            message: responseText,
             direction: "incoming",
           })
-                      
+
       setIsTyping(false);
-      
     })
   }
 

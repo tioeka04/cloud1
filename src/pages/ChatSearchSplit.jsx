@@ -13,7 +13,7 @@ import {
 } from "@chatscope/chat-ui-kit-react";
 
 
-export default function Chat() {
+export default function ChatSearch() {
   const [messages, setMessages] = useState([])
   const [isTyping, setIsTyping] = useState(false);
 
@@ -29,7 +29,6 @@ export default function Chat() {
   }
 
   async function handleSend(text) {
-
     //display question
     const questionMessage = {
       message: text,
@@ -47,17 +46,18 @@ export default function Chat() {
 
     //display answer
     setIsTyping(true)
+    let produkName = '' 
     fetch("https://api.groq.com/openai/v1/chat/completions", {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer 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",
+        "Authorization": "Bearer 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",
       },
       body: JSON.stringify({
         model: "llama-3.3-70b-versatile",
         messages: [{
             role: "user",
-            content: text
+            content: "Please find product name only from this question: "+text
           }]
       })
     })
@@ -65,11 +65,33 @@ export default function Chat() {
       return response.json();
     })
     .then(async(data) => {
+      //get reply from LLM
+      produkName = data.choices[0].message.content
+      
+      // let produkNameWords = produkName.toLowerCase().split(/\s+/);
+      // let produkNameParts = produkNameWords.map(word => `nama.ilike.%${word}%`);
+      // produkNameParts.join(',');
+
+      const { data:dataProduk, error } = await supabase
+                                  .from("produk")
+                                  .select("nama, harga")
+                                  .ilike("nama", `%${produkName}%`)
+                                  // .or(produkNameParts)
+                                  .order("harga")
+     
+      let responseText = ''
+      if (dataProduk.length > 0) {
+        dataProduk.map(item => {
+          responseText += item.nama+": Rp "+item.harga.toLocaleString('id-ID')+"\n";
+        })
+      } else {
+        responseText = "Maaf produk tidak ditemukan";
+      }
 
       //display answer from LLM
       const replyMessage = {
         //based on response data structure
-        message: data.choices[0].message.content,
+        message: responseText,
         direction: "incoming",
       }
       setMessages(prev => [...prev, replyMessage]);
@@ -78,12 +100,11 @@ export default function Chat() {
       await supabase
           .from('cloud_chat')
           .insert({
-            message: data.choices[0].message.content,
+            message: responseText,
             direction: "incoming",
           })
-                      
+
       setIsTyping(false);
-      
     })
   }
 

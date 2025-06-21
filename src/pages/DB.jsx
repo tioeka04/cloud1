@@ -14,7 +14,7 @@ export default function DB() {
 
   async function API() {
     const { data, error } = await supabase
-          .from('todos')
+          .from('cloud_todos')
           .select('id,task')
     setDataAPI(data)
   }

@@ -24,7 +24,7 @@ export default function Storage() {
                     .storage
                     .from('todos')
                     .getPublicUrl('public/supa.jpeg')
-
+    console.log(data)
     setImageURL(data.publicUrl)
   }
 
