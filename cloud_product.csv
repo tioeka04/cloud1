@@ -1,21 +1,21 @@
-id,name,description,price
-1,Body Wash - Classic,"Antibacterial liquid soap with a clean, classic fragrance.",12000
-2,Body Wash - Lemon Fresh,Liquid soap with a refreshing lemon scent for daily hygiene.,12500
-3,Toothpaste - Whitening,Fluoride toothpaste designed to whiten teeth and freshen breath.,9500
-4,Toothpaste - Herbal,Toothpaste with herbal ingredients for natural oral care.,10000
-5,Cooking Oil - Premium 1L,High-quality palm oil for cooking and frying.,21000
-6,Cooking Oil - Fortified 1L,Fortified palm oil enriched with vitamins for daily use.,20500
-7,White Rice - Medium Grain 5kg,Soft medium-grain rice suitable for family meals.,69000
-8,White Rice - Long Grain 5kg,"Long-grain rice with a light, fluffy texture.",72000
-9,Tea Bags - Black 25 pcs,Aromatic black tea bags for daily brewing.,11500
-10,Tea Bags - Jasmine 25 pcs,Scented jasmine tea bags for relaxing moments.,11000
-11,Ground Coffee - Strong,Bold ground black coffee with rich aroma.,13500
-12,Instant Coffee - Sweetened,"Instant coffee with sugar, convenient for quick brewing.",1800
-13,Instant Noodles - Original,Quick-cook fried noodles with savory seasoning.,3200
-14,Instant Noodles - Spicy Rendang,Fried noodles with spicy rendang-style flavor.,3500
-15,Chicken Eggs - Regular 1kg,Fresh regular chicken eggs for cooking and baking.,28000
-16,Chicken Eggs - Omega-3 1kg,Chicken eggs enriched with omega-3 for extra nutrition.,32000
-17,White Sugar - Refined 1kg,Fine-texture refined white sugar for kitchen use.,15500
-18,White Sugar - Fine Grain 1kg,Granulated sugar ideal for drinks and desserts.,15000
-19,Mineral Water - 600ml,Clean bottled water for daily hydration.,3500
-20,Mineral Water - Light 600ml,Natural mineral water in a portable bottle.,3400
+id,name,price
+1,Body Wash - Classic,12000
+2,Body Wash - Lemon Fresh,12500
+3,Toothpaste - Whitening,9500
+4,Toothpaste - Herbal,10000
+5,Cooking Oil - Premium 1L,21000
+6,Cooking Oil - Fortified 1L,20500
+7,White Rice - Medium Grain 5kg,69000
+8,White Rice - Long Grain 5kg,72000
+9,Tea Bags - Black 25 pcs,11500
+10,Tea Bags - Jasmine 25 pcs,11000
+11,Ground Coffee - Strong,13500
+12,Instant Coffee - Sweetened,1800
+13,Instant Noodles - Original,3200
+14,Instant Noodles - Spicy Rendang,3500
+15,Chicken Eggs - Regular 1kg,28000
+16,Chicken Eggs - Omega-3 1kg,32000
+17,White Sugar - Refined 1kg,15500
+18,White Sugar - Fine Grain 1kg,15000
+19,Mineral Water - 600ml,3500
+20,Mineral Water - Light 600ml,3400
