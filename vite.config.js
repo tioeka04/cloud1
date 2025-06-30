@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// https://vite.dev/config/
+// Ganti "cloud1" dengan nama repo kamu di GitHub
 export default defineConfig({
-  plugins: [react()],
+  base: '/cloud1/',
+  plugins: [react()]
 })
